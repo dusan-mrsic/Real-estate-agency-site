@@ -1,0 +1,14 @@
+<mat-card>
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm" autocomplete="off">
+    <mat-form-field>
+      <input  matInput name="username" ngModel placeholder="Username" #usernameInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" name="password" ngModel matInput  placeholder="Password" #passwordInput="ngModel" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  </form>
+  <div class="guest-link">
+    If you dont have account you can continue as <a [routerLink]="['guest']">guest</a>!
+  </div>
+</mat-card>

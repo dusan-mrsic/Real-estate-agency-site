@@ -1,0 +1,36 @@
+<mat-card>
+  <form (submit)="onRegister(registerForm)" #registerForm="ngForm" autocomplete="off">
+    <mat-form-field>
+      <input  matInput name="name" ngModel placeholder="Name" #nameInput="ngModel" required >
+    </mat-form-field>
+    <mat-form-field>
+      <input  matInput name="lastName" ngModel placeholder="Last name" #lastNameInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input  matInput name="username" ngModel placeholder="Username" #usernameInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" ngModel matInput  placeholder="Password" #passwordInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" name="confirmPassword" ngModel matInput  placeholder="Confirm password" #passwordInput="ngModel" required>
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Choose image</button>
+      <input style="visibility: hidden;" type="file" #filePicker (change)="pickImage($event)">
+    </div>
+    <div class="img-preview" *ngIf="previewOfImage !== '' && previewOfImage">
+      <img [src]="previewOfImage" [alt]="text">
+    </div>
+    <mat-form-field>
+      <input type="email" name="email" ngModel matInput  placeholder="Email adress" #emailInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input name="city" ngModel matInput  placeholder="City" #cityInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input name="state" ngModel matInput  placeholder="State" #stateInput="ngModel" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Register</button>
+  </form>
+</mat-card>
