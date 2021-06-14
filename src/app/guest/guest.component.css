@@ -1,0 +1,24 @@
+.spacer{
+  flex: 1 1 auto;
+}
+.search-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.city, .state{
+  margin-left: 20px;
+}
+
+.inputs{
+  margin-left: 20px;
+}
+
+button{
+  margin-left: 20px;
+}
+
+.menu{
+  overflow-x: hidden !important;
+}

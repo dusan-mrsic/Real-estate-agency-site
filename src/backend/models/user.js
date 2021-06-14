@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+var conn = mongoose.createConnection("mongodb+srv://dusan:dusan@cluster0.fhqxu.mongodb.net/UsersDB?retryWrites=true&w=majority");
+
 const userSchema = mongoose.Schema({
   name: {type: String},
   lastName: {type: String},
@@ -11,4 +13,6 @@ const userSchema = mongoose.Schema({
   image:{type: String}
 });
 
-module.exports = mongoose.model('User', userSchema);
+var User = conn.model('User', userSchema);
+
+module.exports = User;

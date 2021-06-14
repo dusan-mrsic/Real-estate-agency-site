@@ -25,7 +25,6 @@ export class LogRegService{
     postData.append("email",email);
     postData.append("city",city);
     postData.append("state",state);
-    console.log("USO!!!");
     postData.append("image",image, "photo");
     this.http.post<{message: string}>("http://localhost:3000/register", postData).subscribe(res => {}
     );
@@ -39,9 +38,39 @@ export class LogRegService{
       this.token = token;
       if(token){
         this.lastLoggedUsername = username;
-        this.router.navigate(["/chat"]);
+        console.log(username);
+        var sliced = username.slice(0,5);
+        console.log(sliced);
+        if(sliced == "agent") this.router.navigate(["/agent"]);
+        else if(sliced == "admin") this.router.navigate(["/admin"]);
+        else this.router.navigate(["/user"]);
       }
     });
+  }
+
+  addRealEstate(description : string, address : string, houseOrApartment : string, house : string,apartment1 : string,apartment2 : string,
+    images : FileList,quadrature : string, rooms : string, furnished : string, forRent : string,price : string, owner : string){
+    const formData = new FormData();
+    formData.append("description",description);
+    formData.append("address",address);
+    formData.append("houseOrApartment",houseOrApartment);
+    formData.append("house",house);
+    formData.append("apartment1",apartment1);
+    formData.append("apartment2",apartment2);
+    formData.append("quadrature",quadrature);
+    formData.append("rooms",rooms);
+    formData.append("furnished",furnished);
+    formData.append("forRent",forRent);
+    formData.append("price",price);
+    formData.append("owner",owner);
+
+    Array.from(images).forEach(file =>
+      formData.append('files', file)
+    )
+    this.http.post<any>('http://localhost:3000/addRealEstate', formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
   }
 
   logout() {

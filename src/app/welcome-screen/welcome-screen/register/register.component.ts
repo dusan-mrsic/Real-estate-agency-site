@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister(form : NgForm){
-    this.logRegService.register(form.value.name, form.value.lastname, form.value.username, form.value.password,form.value.email,form.value.city,form.value.state, this.file);
+    this.logRegService.register(form.value.name, form.value.lastName, form.value.username, form.value.password,form.value.email,form.value.city,form.value.state, this.file);
   }
 
   pickImage(ev : Event){

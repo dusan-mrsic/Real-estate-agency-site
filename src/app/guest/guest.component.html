@@ -1,1 +1,52 @@
-<p>guest works!</p>
+<p>
+  <mat-toolbar color="primary" class="toolbar">
+    <span class="header-text">Welcome to Real Estate Agency</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu   #menu="matMenu" class="menu">
+      <button mat-menu-item>
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>account_box</mat-icon>
+        <span>Register</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</p>
+<form class="search-form">
+  <mat-card class="search-card">
+    <mat-form-field appearance="fill" class="city">
+      <mat-label>City</mat-label>
+      <mat-select>
+        <mat-option>
+          value
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="state">
+      <mat-label>State</mat-label>
+      <mat-select>
+        <mat-option>
+          value
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="inputs">
+      <mat-label>Price min</mat-label>
+      <input matInput placeholder="min">
+    </mat-form-field>
+    <mat-form-field class="inputs">
+      <mat-label>Price max</mat-label>
+      <input matInput placeholder="max">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Search</button>
+  </mat-card>
+</form>

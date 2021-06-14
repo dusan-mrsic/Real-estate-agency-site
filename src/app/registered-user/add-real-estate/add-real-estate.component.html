@@ -1,0 +1,55 @@
+<mat-card>
+  <form (submit)="onAddRealEsate(registerForm)" #registerForm="ngForm" autocomplete="off">
+    <mat-form-field>
+      <input  matInput name="description" ngModel placeholder="Description" #nameInput="ngModel" required >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="address" ngModel placeholder="Address" #lastNameInput="ngModel" required>
+    </mat-form-field>
+    <mat-radio-group aria-label="Select an option" name="houseOrApartment" ngModel #houseOrApartmentInput="ngModel" required [(ngModel)]="valueOfApartment">
+      <mat-radio-button value="1">House</mat-radio-button>
+      <mat-radio-button value="2">Apartment</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field *ngIf="valueOfApartment == 1">
+      <input name="house" ngModel matInput  placeholder="Number of floors of the house" #houseInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field *ngIf="valueOfApartment == 2">
+      <input name="apartment1" ngModel matInput  placeholder="On which floor is the apartment" #apartment1Input1="ngModel" required>
+    </mat-form-field>
+    <mat-form-field *ngIf="valueOfApartment == 2">
+      <input name="apartment2" ngModel matInput  placeholder="How many floors does the building have" #apartment2Input2="ngModel" required>
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Choose images</button>
+      <input style="visibility: hidden;" type="file" multiple="" #filePicker (change)="pickImages($event)">
+    </div>
+    <div class="img-preview" *ngIf="previewOfImage !== '' && previewOfImage">
+      <img [src]="previewOfImage">
+    </div>
+    <mat-form-field>
+      <input name="quadrature" ngModel matInput  placeholder="Quadrature" #quadratureInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input name="rooms" ngModel matInput  placeholder="Number of rooms" #roomsInput="ngModel" required>
+    </mat-form-field>
+    <mat-radio-group aria-label="Select an option" name="furnished" ngModel #furnishedInput="ngModel" required>
+      <mat-radio-button value="1" style="margin-right: 5px;">Furnished</mat-radio-button>
+      <mat-radio-button value="2">Unfurnished</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <mat-radio-group aria-label="Select an option" name="forRent" ngModel #forRentInput="ngModel"    required>
+      <mat-radio-button value="1" style="margin-top: 5px; margin-right: 20px;">For rent</mat-radio-button>
+      <mat-radio-button value="2">For sale</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+      <input name="price" ngModel matInput  placeholder="Price" #priceInput="ngModel" required>
+    </mat-form-field>
+    <label>Owner: </label>
+    <mat-radio-group aria-label="Select an option" name="owner" ngModel #ownerInput="ngModel" required >
+      <mat-radio-button value="1" style="margin-right: 5px;">User</mat-radio-button>
+      <mat-radio-button value="2">Agency</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <button mat-raised-button color="primary" type="submit" style="margin-top: 10px;">Save</button>
+  </form>
+</mat-card>
