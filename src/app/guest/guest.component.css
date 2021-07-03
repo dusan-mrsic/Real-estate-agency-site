@@ -19,6 +19,18 @@ button{
   margin-left: 20px;
 }
 
-.menu{
-  overflow-x: hidden !important;
+.mess{
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+mat-card {
+  margin-bottom: 10px;
+}
+
+gallery{
+  background-color: white;
 }

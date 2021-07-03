@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LogRegService } from 'src/app/welcome-screen/welcome-screen/LogRegService.service';
+import { LogRegService } from 'src/app/welcome-screen/welcome-screen/LogRegAddEstateService.service';
 
 @Component({
   selector: 'app-add-real-estate',
@@ -19,8 +19,10 @@ export class AddRealEstateComponent implements OnInit {
   }
 
   onAddRealEsate(form : NgForm){
-    this.userService.addRealEstate(form.value.description, form.value.address, form.value.houseOrApartment, form.value.house,form.value.apartment1,form.value.apartment2,
+    if(form.value.houseOrApartment == '1') this.userService.addRealEstate(form.value.description,form.value.city, form.value.municipality, form.value.address, form.value.houseOrApartment, form.value.house,'0','0',
        this.images,form.value.quadrature, form.value.rooms, form.value.furnished, form.value.forRent,form.value.price,form.value.owner);
+    else this.userService.addRealEstate(form.value.description,form.value.city, form.value.municipality, form.value.address, form.value.houseOrApartment, '0',form.value.apartment1,form.value.apartment2,
+      this.images,form.value.quadrature, form.value.rooms, form.value.furnished, form.value.forRent,form.value.price,form.value.owner);
   }
 
   pickImages(ev : Event){

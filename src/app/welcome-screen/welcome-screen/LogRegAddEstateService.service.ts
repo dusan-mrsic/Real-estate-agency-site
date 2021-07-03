@@ -48,10 +48,12 @@ export class LogRegService{
     });
   }
 
-  addRealEstate(description : string, address : string, houseOrApartment : string, house : string,apartment1 : string,apartment2 : string,
+  addRealEstate(description : string,city:string, municipality:string, address : string, houseOrApartment : string, house : string,apartment1 : string,apartment2 : string,
     images : FileList,quadrature : string, rooms : string, furnished : string, forRent : string,price : string, owner : string){
     const formData = new FormData();
     formData.append("description",description);
+    formData.append("city",city);
+    formData.append("municipality",municipality);
     formData.append("address",address);
     formData.append("houseOrApartment",houseOrApartment);
     formData.append("house",house);

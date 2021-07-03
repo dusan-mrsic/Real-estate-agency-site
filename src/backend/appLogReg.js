@@ -10,6 +10,7 @@ const RealEstate = require('./models/real_estate');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const multer = require("multer");
+const path = require("path");
 
 const MIME_TYPE_MAP = {
   "image/png": "png",
@@ -44,6 +45,7 @@ const storage = multer.diskStorage({
 const appLogin = express();
 appLogin.use(cors());
 appLogin.use(bodyParser.json());
+appLogin.use("/images", express.static(path.join("src/backend/images")));
 
 appLogin.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -70,17 +72,19 @@ appLogin.post('/addRealEstate', multer({ storage: storage }).array('files'), (re
   console.log(files);
     const estate =  new RealEstate({
       description: req.body.description,
+      city:req.body.city,
+      municipality: req.body.municipality,
       address: req.body.address,
       house_or_apartment: req.body.houseOrApartment,
-      numberOfFloorsHouse: req.body.house,
-      floorApartment: req.body.apartment1,
-      floorsOfBuilding: req.body.apartment2,
+      numberOfFloorsHouse: parseInt(req.body.house),
+      floorApartment: parseInt(req.body.apartment1),
+      floorsOfBuilding: parseInt(req.body.apartment2),
       images: images,
-      quadrature: req.body.quadrature,
-      numberOfRooms: req.body.rooms,
+      quadrature: parseInt(req.body.quadrature),
+      numberOfRooms: parseInt(req.body.rooms),
       furnished_or_unfurnished: req.body.furnished,
       forRent_or_forSale: req.body.forRent,
-      price: req.body.price,
+      price: parseInt(req.body.price),
       user_or_agency: req.body.owner
     })
 
@@ -95,6 +99,21 @@ appLogin.post('/addRealEstate', multer({ storage: storage }).array('files'), (re
         result: result
       })
     })
+})
+
+
+appLogin.post('/searchEstates', (req, res, next) => {
+
+  if(req.body.city) {RealEstate.find({city: req.body.city, price: {$gt : req.body.priceMin, $lt : req.body.priceMax}}).then(realEstate => {
+      res.json(realEstate);
+    })
+  }else{
+    console.log(req.body.priceMin);
+    console.log(req.body.priceMax);
+    RealEstate.find({price: {$gt : req.body.priceMin, $lt : req.body.priceMax}}).then(realEstate => {
+      res.json(realEstate);})
+  }
+
 })
 
 appLogin.post('/register',  multer({ storage: storage }).single("image"), (req, res, next) => {
@@ -142,13 +161,6 @@ appLogin.post('/register',  multer({ storage: storage }).single("image"), (req, 
 });
 
 appLogin.post('/login', (req, res, next) => {
-  mongoose.connect("mongodb+srv://dusan:dusan@cluster0.fhqxu.mongodb.net/UsersDB?retryWrites=true&w=majority")
-  .then(() => {
-      console.log("Connected to database!");
-  })
-  .catch(() => {
-    console.log("Connection failed!")
-  });
   let fetchedUser;
   User.findOne({ username: req.body.username }).then(user => {
       if(!user){

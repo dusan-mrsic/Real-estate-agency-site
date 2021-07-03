@@ -5,7 +5,7 @@
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu   #menu="matMenu" class="menu">
+    <mat-menu #menu="matMenu" class="menu">
       <button mat-menu-item>
         <mat-icon>login</mat-icon>
         <span>Login</span>
@@ -21,32 +21,42 @@
     </mat-menu>
   </mat-toolbar>
 </p>
-<form class="search-form">
-  <mat-card class="search-card">
+
+<div  class="basic-container">
+	<gallery id="basic-test" fluid [items]="this.items"></gallery>
+</div>
+
+<mat-card class="search-card">
+  <form (submit)="onSearch(searchForm)" #searchForm="ngForm" class="search-form" >
+
     <mat-form-field appearance="fill" class="city">
       <mat-label>City</mat-label>
-      <mat-select>
-        <mat-option>
-          value
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="state">
-      <mat-label>State</mat-label>
-      <mat-select>
-        <mat-option>
-          value
-        </mat-option>
-      </mat-select>
+      <input matInput placeholder="City" name="city" ngModel #cityInput="ngModel" >
     </mat-form-field>
     <mat-form-field class="inputs">
       <mat-label>Price min</mat-label>
-      <input matInput placeholder="min">
+      <input matInput placeholder="min" name="priceMin" ngModel #priceMinInput="ngModel">
     </mat-form-field>
     <mat-form-field class="inputs">
       <mat-label>Price max</mat-label>
-      <input matInput placeholder="max">
+      <input matInput placeholder="max" name="priceMax" ngModel #priceMaxInput="ngModel">
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Search</button>
+    <br>
+    <span class="mess">{{message}}</span>
+  </form>
+</mat-card>
+<div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+  <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)"
+    *ngFor="let estates of this.realEstates">
+    <mat-card-title>{{estates.city}}, {{estates.municipality}}</mat-card-title>
+    <img mat-card-image src={{estates.images[0]}} class="image">
+    <mat-card-content>Price: {{estates.price}} &euro; </mat-card-content>
+    <mat-card-content *ngIf="estates.house_or_apartment == '1'">House</mat-card-content>
+    <mat-card-content *ngIf="estates.house_or_apartment == '2'">Apartment with {{estates.numberOfRooms}} rooms</mat-card-content>
+    <mat-card-content>Quadrature: {{estates.quadrature}} &#13217;</mat-card-content>
+    <mat-card-content *ngIf="estates.forRent_or_forSale == '1'">For Rent</mat-card-content>
+    <mat-card-content *ngIf="estates.forRent_or_forSale == '2'">For Sale</mat-card-content>
   </mat-card>
-</form>
+
+</div>

@@ -19,6 +19,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 import { WelcomeScreenComponent } from './welcome-screen/welcome-screen/welcome-screen.component';
@@ -29,6 +30,11 @@ import { AgentComponent } from './agent/agent.component';
 import { RegisteredUserComponent } from './registered-user/registered-user.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddRealEstateComponent } from './registered-user/add-real-estate/add-real-estate.component';
+
+
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
+
 
 
 @NgModule({
@@ -59,7 +65,10 @@ import { AddRealEstateComponent } from './registered-user/add-real-estate/add-re
     HttpClientModule,
     MatMenuModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    FlexLayoutModule,
+    GalleryModule,
+    LightboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

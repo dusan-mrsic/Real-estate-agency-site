@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LogRegService } from '../LogRegService.service';
+import { LogRegService } from '../LogRegAddEstateService.service';
 
 @Component({
   selector: 'app-register',
@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
     fileReader.onload = () => {
       this.previewOfImage = fileReader.result as string;
     };
+
     fileReader.readAsDataURL(this.file);
   }
 
