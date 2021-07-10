@@ -1,1 +1,76 @@
-<app-add-real-estate></app-add-real-estate>
+<p>
+  <mat-toolbar color="primary" class="toolbar">
+    <span class="header-text">Welcome to Real Estate Agency</span>
+    <span class="spacer"></span>
+  </mat-toolbar>
+</p>
+<div>
+  <div class="menu-card">
+    <button mat-button (click)="addRealEstate()">Add Real estate</button>
+
+    <button mat-button (click)="changePersonalInfo()">Change personal info</button>
+
+    <button mat-button (click)="searchRealEstate()">Search Real estates</button>
+
+    <button mat-button (click)="myRealEstate()">My Real estates</button>
+
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div *ngIf = 'searchRealEstatesFlag == true'>
+  <div class="basic-container">
+    <gallery id="basic-test" fluid [items]="this.items"></gallery>
+  </div>
+
+  <mat-card class="search-card">
+    <form (submit)="onSearch(searchForm)" #searchForm="ngForm" class="search-form">
+
+      <mat-form-field appearance="fill" class="city">
+        <mat-label>City</mat-label>
+        <input matInput placeholder="City" name="city" ngModel #cityInput="ngModel">
+      </mat-form-field>
+      <mat-form-field class="inputs">
+        <mat-label>Price min</mat-label>
+        <input matInput placeholder="min" name="priceMin" ngModel #priceMinInput="ngModel">
+      </mat-form-field>
+      <mat-form-field class="inputs">
+        <mat-label>Price max</mat-label>
+        <input matInput placeholder="max" name="priceMax" ngModel #priceMaxInput="ngModel">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Search</button>
+      <br>
+      <span class="mess">{{message}}</span>
+    </form>
+  </mat-card>
+  <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+    <mat-card style='cursor: pointer;' (click)="realEstateInfo(estates)" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)"
+      *ngFor="let estates of this.realEstates">
+      <mat-card-title>{{estates.city}}, {{estates.municipality}}</mat-card-title>
+      <img mat-card-image src={{estates.images[0]}} class="image">
+      <mat-card-content>Price: {{estates.price}} &euro; </mat-card-content>
+      <mat-card-content *ngIf="estates.house_or_apartment == '1'">House</mat-card-content>
+      <mat-card-content *ngIf="estates.house_or_apartment == '2'">Apartment with {{estates.numberOfRooms}} rooms
+      </mat-card-content>
+      <mat-card-content>Quadrature: {{estates.quadrature}} &#13217;</mat-card-content>
+      <mat-card-content *ngIf="estates.forRent_or_forSale == '1'">For Rent</mat-card-content>
+      <mat-card-content *ngIf="estates.forRent_or_forSale == '2'">For Sale</mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div *ngIf='addRealEstateFlag == true'>
+  <app-add-real-estate ></app-add-real-estate>
+</div>
+
+<div *ngIf='changePersonalInfoFlag == true'>
+  <app-change-personal-info></app-change-personal-info>
+</div>
+
+<div *ngIf='realEstateInfoFlag == true'>
+  <app-real-estate-info></app-real-estate-info>
+</div>
+
+<div *ngIf='myRealEstatesFlag== true'>
+  <app-my-real-estates></app-my-real-estates>
+</div>

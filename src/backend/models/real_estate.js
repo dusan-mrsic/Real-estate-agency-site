@@ -17,7 +17,8 @@ const userSchema = mongoose.Schema({
   furnished_or_unfurnished:{type: String},
   forRent_or_forSale:{type: String},
   price:{type: Number},
-  user_or_agency:{type: String}
+  user_or_agency:{type: String},
+  username:{type: String}
 
 
 });

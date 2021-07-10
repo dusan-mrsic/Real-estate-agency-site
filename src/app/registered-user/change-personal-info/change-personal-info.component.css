@@ -1,0 +1,13 @@
+mat-form-field{
+  width:60%;
+}
+
+.img-preview{
+  height: 100px;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.img-preview img {
+  height: 100%;
+}

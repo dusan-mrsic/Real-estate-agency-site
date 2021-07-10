@@ -1,0 +1,13 @@
+<div class="basic-container">
+  <gallery id="basic-test" fluid [items]="this.items"></gallery>
+</div>
+<div class='estate-info'>
+  <mat-card-title>{{estate.city}}, {{estate.municipality}}</mat-card-title>
+  <mat-card-content>Price: {{estate.price}} &euro; </mat-card-content>
+  <mat-card-content *ngIf="estate.house_or_apartment == '1'">House</mat-card-content>
+  <mat-card-content *ngIf="estate.house_or_apartment == '2'">Apartment with {{estate.numberOfRooms}} rooms
+  </mat-card-content>
+  <mat-card-content>Quadrature: {{estate.quadrature}} &#13217;</mat-card-content>
+  <mat-card-content *ngIf="estate.forRent_or_forSale == '1'">For Rent</mat-card-content>
+  <mat-card-content *ngIf="estate.forRent_or_forSale == '2'">For Sale</mat-card-content>
+</div>

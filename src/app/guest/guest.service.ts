@@ -16,6 +16,4 @@ export class GuestService {
     return this.http.post<Array<RealEstate>>("http://localhost:3000/searchEstates", data);
   }
 
-
-
 }

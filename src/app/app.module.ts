@@ -34,6 +34,9 @@ import { AddRealEstateComponent } from './registered-user/add-real-estate/add-re
 
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
+import { ChangePersonalInfoComponent } from './registered-user/change-personal-info/change-personal-info.component';
+import { RealEstateInfoComponent } from './real-estate-info/real-estate-info.component';
+import { MyRealEstatesComponent } from './registered-user/my-real-estates/my-real-estates.component';
 
 
 
@@ -47,7 +50,10 @@ import { LightboxModule } from 'ng-gallery/lightbox';
     AgentComponent,
     RegisteredUserComponent,
     AdminComponent,
-    AddRealEstateComponent
+    AddRealEstateComponent,
+    ChangePersonalInfoComponent,
+    RealEstateInfoComponent,
+    MyRealEstatesComponent
   ],
   imports: [
     BrowserModule,

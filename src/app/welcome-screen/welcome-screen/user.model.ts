@@ -1,9 +1,11 @@
 export interface User{
+  _id: string;
   name: string,
-  lastname: string,
+  lastName: string,
   username: string,
   password: string,
   email: string,
   city: string,
   state: string
+  image: string;
 }

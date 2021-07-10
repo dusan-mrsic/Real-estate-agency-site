@@ -1,0 +1,30 @@
+
+<mat-card style='text-align: center;'>
+  <div class="img-preview" *ngIf="previewOfImage !== '' && previewOfImage">
+    <img [src]="previewOfImage" [alt]="text">
+  </div>
+  <form (submit)="changePersonalInfo(changeForm)" #changeForm="ngForm" autocomplete="off">
+    <mat-form-field>
+      <input  matInput name="name" [(ngModel)]='user.name' ngModel placeholder="Name" #nameInput="ngModel" required >
+    </mat-form-field>
+    <mat-form-field>
+      <input  matInput name="lastName" [(ngModel)]='user.lastName' placeholder="Last name" #lastNameInput="ngModel" required>
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Change image</button>
+      <input style="visibility: hidden;" type="file" #filePicker (change)="pickImage($event)">
+    </div>
+
+    <mat-form-field>
+      <input type="email" name="email" [(ngModel)]='user.email' matInput  placeholder="Email adress" #emailInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input name="city" [(ngModel)]='user.city' matInput  placeholder="City" #cityInput="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input name="state" [(ngModel)]='user.state' matInput  placeholder="State" #stateInput="ngModel" required>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Change info</button>
+  </form>
+</mat-card>

@@ -11,6 +11,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const multer = require("multer");
 const path = require("path");
+const { consoleTestResultHandler } = require('tslint/lib/test');
 
 const MIME_TYPE_MAP = {
   "image/png": "png",
@@ -85,7 +86,8 @@ appLogin.post('/addRealEstate', multer({ storage: storage }).array('files'), (re
       furnished_or_unfurnished: req.body.furnished,
       forRent_or_forSale: req.body.forRent,
       price: parseInt(req.body.price),
-      user_or_agency: req.body.owner
+      user_or_agency: req.body.owner,
+      username: req.body.username
     })
 
     estate.save().then(result => {
@@ -95,10 +97,51 @@ appLogin.post('/addRealEstate', multer({ storage: storage }).array('files'), (re
         })
       }
       res.status(201).json({
-        message: "User created!",
+        message: "Added real estate!",
         result: result
       })
     })
+})
+
+appLogin.post('/changeRealEstate', (req, res, next) => {
+
+    const estate =  new RealEstate({
+      _id: req.body._id,
+      description: req.body.description,
+      city:req.body.city,
+      municipality: req.body.municipality,
+      address: req.body.address,
+      house_or_apartment: req.body.house_or_apartment,
+      numberOfFloorsHouse: req.body.numberOfFloorsHouse,
+      floorApartment: req.body.floorApartment,
+      floorsOfBuilding: req.body.floorsOfBuilding,
+      images: req.body.images,
+      quadrature: req.body.quadrature,
+      numberOfRooms: req.body.numberOfRooms,
+      furnished_or_unfurnished: req.body.furnished_or_unfurnished,
+      forRent_or_forSale: req.body.forRent_or_forSale,
+      price: req.body.price,
+      user_or_agency: req.body.user_or_agency,
+      username: req.body.username
+    })
+    console.log(estate);
+    RealEstate.replaceOne({description : req.body.description}, estate).then(result => {
+      if(!result){
+        return res.status(500).json({
+          message: "Error changing info!"
+        })
+      }
+      res.status(201).json({
+        message: "Info changed!",
+        result: result
+      });
+    })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    });
+  });
 })
 
 
@@ -108,11 +151,17 @@ appLogin.post('/searchEstates', (req, res, next) => {
       res.json(realEstate);
     })
   }else{
-    console.log(req.body.priceMin);
-    console.log(req.body.priceMax);
     RealEstate.find({price: {$gt : req.body.priceMin, $lt : req.body.priceMax}}).then(realEstate => {
       res.json(realEstate);})
   }
+
+})
+
+appLogin.post('/searchMyEstates', (req, res, next) => {
+  console.log(req.body.username);
+  RealEstate.find({username: req.body.username}).then(realEstate => {
+    res.json(realEstate);
+  })
 
 })
 
@@ -194,5 +243,89 @@ appLogin.post('/login', (req, res, next) => {
     });
 });
 
+appLogin.post('/getUser', (req, res, next) => {
+  User.findOne({ username: req.body.username }).then(user => {
+      if(!user){
+        return res.status(401).json({
+          message: "User does not exist!"
+        })
+      }
+      res.status(200).json({
+        user: user
+      })
+  });
+});
+
+appLogin.post('/changePersonalInfo',  multer({ storage: storage }).single("image"), (req, res, next) => {
+
+
+    const url = req.protocol + '://' + req.get("host");
+    const user =  new User({
+      _id: req.body._id,
+      name: req.body.name,
+      lastName: req.body.lastName,
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      city: req.body.city,
+      state: req.body.state,
+      image: url + "/images/" + req.file.filename
+    })
+
+    console.log(user);
+
+    User.replaceOne({_id : req.body._id}, user).then(result => {
+      if(!result){
+        return res.status(500).json({
+          message: "Error Creating User!"
+        })
+      }
+      res.status(201).json({
+        message: "User created!",
+        result: result
+      });
+    })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    });
+  });
+});
+
+appLogin.post('/changePersonalInfoWithNoImage', (req, res, next) => {
+
+  const user =  new User({
+    _id: req.body._id,
+    name: req.body.name,
+    lastName: req.body.lastName,
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email,
+    city: req.body.city,
+    state: req.body.state,
+    image: req.body.image
+  })
+
+  console.log(user);
+
+    User.replaceOne({_id : req.body._id}, user).then(result => {
+      if(!result){
+        return res.status(500).json({
+          message: "Error Creating User!"
+        })
+      }
+      res.status(201).json({
+        message: "User created!",
+        result: result
+      });
+    })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    });
+  });
+});
 
 module.exports = appLogin;

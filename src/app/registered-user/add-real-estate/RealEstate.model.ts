@@ -1,4 +1,5 @@
 export class RealEstate{
+  _id: string;
   description: string;
   city: string;
   municipality: string;
@@ -13,5 +14,6 @@ export class RealEstate{
   furnished_or_unfurnished:string;
   forRent_or_forSale:string;
   price:number;
-  user_or_agency:string
+  user_or_agency:string;
+  username: string;
 }

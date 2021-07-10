@@ -1,0 +1,42 @@
+.spacer{
+  flex: 1 1 auto;
+}
+.search-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.city, .state{
+  margin-left: 20px;
+}
+
+.inputs{
+  margin-left: 20px;
+}
+
+button{
+  margin-left: 20px;
+}
+
+.mess{
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-card{
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+mat-card {
+  margin-bottom: 10px;
+}
+
+gallery{
+  background-color: white;
+}

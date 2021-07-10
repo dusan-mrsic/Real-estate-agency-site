@@ -5,6 +5,7 @@ import { RealEstate } from '../registered-user/add-real-estate/RealEstate.model'
 import { GuestService } from './guest.service';
 
 import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from 'ng-gallery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guest',
@@ -13,7 +14,7 @@ import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from '
 })
 export class GuestComponent implements OnInit {
 
-  constructor(public gallery: Gallery, public lightbox: Lightbox,private guestService : GuestService) { }
+  constructor(public gallery: Gallery, public lightbox: Lightbox,private guestService : GuestService, private router : Router) { }
 
   items: GalleryItem[];
   promoted : Array<RealEstate> = [];
@@ -46,6 +47,9 @@ export class GuestComponent implements OnInit {
   realEstates : Array<RealEstate> = [];
   message = "";
 
+  logreg(){
+    this.router.navigate([""]);
+  }
 
   onSearch(form: NgForm){
     if(!form.value.city && !form.value.priceMin && !form.value.priceMax){

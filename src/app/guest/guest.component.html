@@ -6,17 +6,13 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="menu">
-      <button mat-menu-item>
+      <button (click)='logreg()' mat-menu-item>
         <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
-      <button mat-menu-item>
+      <button (click)='logreg()' mat-menu-item>
         <mat-icon>account_box</mat-icon>
         <span>Register</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>logout</mat-icon>
-        <span>Logout</span>
       </button>
     </mat-menu>
   </mat-toolbar>
