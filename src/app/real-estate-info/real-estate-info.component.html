@@ -10,4 +10,5 @@
   <mat-card-content>Quadrature: {{estate.quadrature}} &#13217;</mat-card-content>
   <mat-card-content *ngIf="estate.forRent_or_forSale == '1'">For Rent</mat-card-content>
   <mat-card-content *ngIf="estate.forRent_or_forSale == '2'">For Sale</mat-card-content>
+  <button mat-raised-button color="primary" (click)="giveOffer(estate)">OFFER</button>
 </div>

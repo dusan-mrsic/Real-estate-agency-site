@@ -1,0 +1,17 @@
+mat-card{
+  width: 80%;
+  margin:auto;
+}
+
+mat-form-field{
+  width:100%;
+}
+
+.img-preview{
+  height: 100px;
+  margin: 5px 0;
+}
+
+.img-preview img {
+  height: 100%;
+}

@@ -27,9 +27,11 @@ export class RegisteredUserComponent implements OnInit {
   realEstateInfoFlag : boolean = false;
   searchRealEstatesFlag : boolean = true;
   myRealEstatesFlag : boolean = false;
+  offersFlag : boolean = false;
+  changePassFlag : boolean = false;
 
   ngOnInit(): void {
-    this.guestService.search("Beograd", 0, 100000000).subscribe((realEstate: Array<RealEstate>) => {
+    this.guestService.searchP("Beograd", 0, 100000000).subscribe((realEstate: Array<RealEstate>) => {
       this.promoted = realEstate;
       /** Basic Gallery Example */
 
@@ -67,10 +69,23 @@ export class RegisteredUserComponent implements OnInit {
     this.message = "";
     this.guestService.search(form.value.city, form.value.priceMin, form.value.priceMax).subscribe((realEstate: Array<RealEstate>) => {
       this.realEstates = realEstate;
+      console.log(this.realEstates);
     });
   }
 
+  changePassword(){
+    this.offersFlag = false;
+    this.myRealEstatesFlag = false;
+    this.realEstateInfoFlag = false;
+    this.changePersonalInfoFlag = false;
+    this.searchRealEstatesFlag = false;
+    this.addRealEstateFlag = false;
+    this.changePassFlag = true;
+  }
+
   addRealEstate(){
+    this.changePassFlag = false;
+    this.offersFlag = false;
     this.myRealEstatesFlag = false;
     this.realEstateInfoFlag = false;
     this.changePersonalInfoFlag = false;
@@ -79,6 +94,8 @@ export class RegisteredUserComponent implements OnInit {
   }
 
   searchRealEstate(){
+    this.changePassFlag = false;
+    this.offersFlag = false;
     this.myRealEstatesFlag = false;
     this.myRealEstatesFlag = false;
     this.realEstateInfoFlag = false;
@@ -88,6 +105,8 @@ export class RegisteredUserComponent implements OnInit {
   }
 
   changePersonalInfo(){
+    this.changePassFlag = false;
+    this.offersFlag = false;
     this.myRealEstatesFlag = false;
     this.realEstateInfoFlag = false;
     this.addRealEstateFlag = false;
@@ -101,6 +120,8 @@ export class RegisteredUserComponent implements OnInit {
   }
 
   realEstateInfo(estate : RealEstate){
+    this.changePassFlag = false;
+    this.offersFlag = false;
     this.myRealEstatesFlag = false;
     this.addRealEstateFlag = false;
     this.searchRealEstatesFlag = false;
@@ -112,6 +133,8 @@ export class RegisteredUserComponent implements OnInit {
   }
 
   myRealEstate(){
+    this.changePassFlag = false;
+    this.offersFlag = false;
     this.addRealEstateFlag = false;
     this.searchRealEstatesFlag = false;
     this.changePersonalInfoFlag = false;
@@ -119,7 +142,17 @@ export class RegisteredUserComponent implements OnInit {
     this.myRealEstatesFlag = true;
   }
 
+  myOffers(){
+    this.changePassFlag = false;
+    this.addRealEstateFlag = false;
+    this.searchRealEstatesFlag = false;
+    this.changePersonalInfoFlag = false;
+    this.realEstateInfoFlag = false;
+    this.myRealEstatesFlag = false;
+    this.offersFlag = true;
+  }
+
   logout(){
-    this.router.navigate([""]);
+    this.logRegService.logout();
   }
 }

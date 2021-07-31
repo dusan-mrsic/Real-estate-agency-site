@@ -16,4 +16,12 @@ export class GuestService {
     return this.http.post<Array<RealEstate>>("http://localhost:3000/searchEstates", data);
   }
 
+
+  searchP(city: string, priceMin: number, priceMax: number){
+    if(!priceMin) priceMin = 0;
+    if(!priceMax) priceMax = 9999999999;
+    const data = {city: city, priceMin: priceMin, priceMax: priceMax};
+    return this.http.post<Array<RealEstate>>("http://localhost:3000/promoted", data);
+  }
+
 }

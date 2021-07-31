@@ -1,0 +1,24 @@
+<mat-accordion>
+  <div *ngFor='let user of this.userRequests'>
+    <mat-expansion-panel class='info' (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{user.name}} {{user.lastName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          User info
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="info-div">
+      <div class="slika"><img mat-card-image src={{user.image}} class="image"></div>
+      <p><b>Username:</b> {{user.username}}</p>
+      <p><b>Email:</b> {{user.email}}</p>
+      <p><b>City:</b> {{user.city}}</p>
+      <p><b>State:</b> {{user.state}}</p>
+      <button mat-raised-button color="primary" (click)="acceptUser(user)">ACCEPT</button>
+      <button style="margin-left: 40px;" mat-raised-button color="warn" (click)="declineUser(user)">DECLINE</button>
+    </div>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>

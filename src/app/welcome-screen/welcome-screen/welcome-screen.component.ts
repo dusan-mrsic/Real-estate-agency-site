@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    localStorage.setItem('percent', '10');
+  }
 
   ngOnInit(): void {
   }

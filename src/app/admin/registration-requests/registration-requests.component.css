@@ -1,0 +1,19 @@
+.slika{
+  height: 100px;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.slika img {
+  height: 100%;
+}
+
+.info{
+  align-items: center;
+}
+
+.info-div{
+  text-align: left;
+  width: 30%;
+  margin:0 auto;
+}

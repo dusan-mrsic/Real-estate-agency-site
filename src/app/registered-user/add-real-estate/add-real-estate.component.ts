@@ -20,9 +20,9 @@ export class AddRealEstateComponent implements OnInit {
 
   onAddRealEsate(form : NgForm){
     if(form.value.houseOrApartment == '1') this.userService.addRealEstate(form.value.description,form.value.city, form.value.municipality, form.value.address, form.value.houseOrApartment, form.value.house,'0','0',
-       this.images,form.value.quadrature, form.value.rooms, form.value.furnished, form.value.forRent,form.value.price,form.value.owner, this.userService.getLastLoggeduserName());
+       this.images,form.value.quadrature, form.value.rooms, form.value.furnished, form.value.forRent,form.value.price,form.value.owner, this.userService.getLastLoggeduserName(), '0');
     else this.userService.addRealEstate(form.value.description,form.value.city, form.value.municipality, form.value.address, form.value.houseOrApartment, '0',form.value.apartment1,form.value.apartment2,
-      this.images,form.value.quadrature, form.value.rooms, form.value.furnished, form.value.forRent,form.value.price,form.value.owner, this.userService.getLastLoggeduserName());
+      this.images,form.value.quadrature, form.value.rooms, form.value.furnished, form.value.forRent,form.value.price,form.value.owner, this.userService.getLastLoggeduserName(), '0');
   }
 
   pickImages(ev : Event){

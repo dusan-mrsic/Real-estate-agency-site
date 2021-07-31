@@ -1,0 +1,24 @@
+<mat-accordion>
+  <div *ngFor='let estate of this.estateRequests'>
+    <mat-expansion-panel class='info' (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{estate.city}}, {{estate.municipality}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Estate info
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="info-div">
+      <div class="slika"><img mat-card-image src={{estate.images[0]}} class="image"></div>
+      <p><b>Price:</b> {{estate.price}} &euro;</p>
+      <p><b>Quadrature:</b> {{estate.quadrature}} &#13217;</p>
+      <p *ngIf="estate.forRent_or_forSale == '1'"><b>For Rent</b></p>
+      <p *ngIf="estate.forRent_or_forSale == '2'"><b>For Sale</b></p>
+      <button mat-raised-button color="primary" (click)="acceptEstate(estate)">ACCEPT</button>
+      <button style="margin-left: 40px;" mat-raised-button color="warn" (click)="declineEstate(estate)">DECLINE</button>
+    </div>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>

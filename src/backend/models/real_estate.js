@@ -18,9 +18,9 @@ const userSchema = mongoose.Schema({
   forRent_or_forSale:{type: String},
   price:{type: Number},
   user_or_agency:{type: String},
-  username:{type: String}
-
-
+  username:{type: String},
+  accepted: {type: Number},
+  promoted: {type: Number}
 });
 
 var RealEstate = conn1.model('RealEstate', userSchema);

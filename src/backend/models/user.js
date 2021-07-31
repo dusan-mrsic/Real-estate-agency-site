@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
   email:{type: String},
   city:{type: String},
   state:{type: String},
-  image:{type: String}
+  image:{type: String},
+  accepted:{type: Number}
 });
 
 var User = conn.model('User', userSchema);

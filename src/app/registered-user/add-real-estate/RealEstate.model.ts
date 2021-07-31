@@ -16,4 +16,6 @@ export class RealEstate{
   price:number;
   user_or_agency:string;
   username: string;
+  accepted: number;
+  promoted: number;
 }

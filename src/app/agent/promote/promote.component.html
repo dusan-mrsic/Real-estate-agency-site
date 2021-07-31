@@ -1,0 +1,15 @@
+<div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+  <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)"
+    *ngFor="let estates of this.allEstates">
+    <mat-card-title>{{estates.city}}, {{estates.municipality}}</mat-card-title>
+    <img mat-card-image src={{estates.images[0]}} class="image">
+    <mat-card-content>Price: {{estates.price}} &euro; </mat-card-content>
+    <mat-card-content *ngIf="estates.house_or_apartment == '1'">House</mat-card-content>
+    <mat-card-content *ngIf="estates.house_or_apartment == '2'">Apartment with {{estates.numberOfRooms}} rooms</mat-card-content>
+    <mat-card-content>Quadrature: {{estates.quadrature}} &#13217;</mat-card-content>
+    <mat-card-content *ngIf="estates.forRent_or_forSale == '1'">For Rent</mat-card-content>
+    <mat-card-content *ngIf="estates.forRent_or_forSale == '2'">For Sale</mat-card-content>
+    <button *ngIf='estates.promoted == 0' mat-raised-button color="primary" (click)="promote(estates)">PROMOTE</button>
+    <button *ngIf='estates.promoted == 1' mat-raised-button color="warn" (click)="unpromote(estates)">UNPROMOTE</button>
+  </mat-card>
+</div>

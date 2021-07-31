@@ -35,7 +35,7 @@ export class MyRealEstatesComponent implements OnInit {
 
   saveChanges(form : NgForm){
     this.logRegService.changeRealEstate(this.estate._id, form.value.description,form.value.city, form.value.municipality, form.value.address, form.value.houseOrApartment, form.value.house,'0','0',
-       this.estate.images ,form.value.quadrature, form.value.rooms, form.value.furnished, form.value.forRent,form.value.price,form.value.owner, this.logRegService.getLastLoggeduserName());
+       this.estate.images ,form.value.quadrature, form.value.rooms, form.value.furnished, form.value.forRent,form.value.price,form.value.owner, this.logRegService.getLastLoggeduserName(),1,0);
   }
 
 }

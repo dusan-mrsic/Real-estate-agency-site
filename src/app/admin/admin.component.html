@@ -1,1 +1,61 @@
-<p>admin works!</p>
+<p>
+  <mat-toolbar color="primary" class="toolbar">
+    <span class="header-text">Welcome to Real Estate Agency</span>
+    <span class="spacer"></span>
+  </mat-toolbar>
+</p>
+<div>
+  <div class="menu-card">
+    <button mat-button (click)="addUser()" >Add user</button>
+
+    <button mat-button (click)="addRealEstate()">Add real estate</button>
+
+    <button mat-button (click)="allUsers()">All users</button>
+
+    <button mat-button (click)="registrationRequests()">Registration requests</button>
+
+    <button mat-button (click)="realEstateRequests()">Real estate requests</button>
+
+    <button mat-button (click)="salesPercent()">Sales percent</button>
+
+    <button mat-button (click)="charts()" >Statistics</button>
+
+    <button mat-button (click)="changePassword()">Change Password</button>
+
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div *ngIf='addUserFlag == true'>
+  <app-add-user></app-add-user>
+</div>
+
+<div *ngIf='addRealEstateFlag == true'>
+  <app-add-estate></app-add-estate>
+</div>
+
+<div *ngIf='allUsersFlag == true'>
+  <app-all-users></app-all-users>
+</div>
+
+<div *ngIf='registrationRequestsFlag == true'>
+  <app-registration-requests></app-registration-requests>
+</div>
+
+<div *ngIf='realEstateRequestsFlag == true'>
+  <app-real-estate-requests></app-real-estate-requests>
+</div>
+
+<div *ngIf='salesPercentFlag == true'>
+  <app-sales-percent></app-sales-percent>
+</div>
+
+<div *ngIf='chartsFlag == true'>
+  <app-charts></app-charts>
+</div>
+
+<div *ngIf='changePassFlag == true'>
+  <app-change-password></app-change-password>
+</div>
+
+

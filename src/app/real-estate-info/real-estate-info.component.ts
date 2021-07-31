@@ -37,4 +37,8 @@ export class RealEstateInfoComponent implements OnInit {
     lightboxRef.load(this.items);
   }
 
+  giveOffer(estate : RealEstate){
+    this.logRegService.addOffer(estate._id,estate.description, estate.price, estate.images[0], estate.username,this.logRegService.getLastLoggeduserName());
+  }
+
 }

@@ -14,6 +14,10 @@
 
     <button mat-button (click)="myRealEstate()">My Real estates</button>
 
+    <button mat-button (click)="myOffers()">Offers</button>
+
+    <button mat-button (click)="changePassword()">Change Password</button>
+
     <button mat-button (click)="logout()">Logout</button>
   </div>
 </div>
@@ -73,4 +77,12 @@
 
 <div *ngIf='myRealEstatesFlag== true'>
   <app-my-real-estates></app-my-real-estates>
+</div>
+
+<div *ngIf='offersFlag== true'>
+  <app-offers></app-offers>
+</div>
+
+<div *ngIf='changePassFlag == true'>
+  <app-change-password></app-change-password>
 </div>

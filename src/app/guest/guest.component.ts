@@ -20,7 +20,7 @@ export class GuestComponent implements OnInit {
   promoted : Array<RealEstate> = [];
 
   ngOnInit() {
-    this.guestService.search("Beograd",0,100000000).subscribe((realEstate : Array<RealEstate>)=> {
+    this.guestService.searchP("Beograd",0,100000000).subscribe((realEstate : Array<RealEstate>)=> {
       this.promoted = realEstate;
     /** Basic Gallery Example */
 

@@ -1,0 +1,11 @@
+<ng-container *ngFor="let offer of this.allOffers">
+  <mat-card style="margin-right: 15px;" *ngIf='offer.accepted == 0' fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+      <img mat-card-image src={{offer.image}} class="image">
+      <mat-card-content><b>Description:</b> {{offer.description}}</mat-card-content>
+      <mat-card-content><b>Price:</b> {{offer.price}} &euro; </mat-card-content>
+      <mat-card-content><b>Offer given by:</b> {{offer.offerUsername}}</mat-card-content>
+      <button mat-raised-button color="primary" (click)="acceptOffer(offer)">ACCEPT</button>
+      <button style="margin-left: 40px;" mat-raised-button color="warn" (click)="declineOffer(offer)">DECLINE</button>
+  </mat-card>
+</ng-container>
+
